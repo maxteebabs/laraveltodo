@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('tasks', 'App\Domain\Tasks\TaskController@getAll');
-Route::get('tasks/mark/{id}', 'App\Domain\Tasks\TaskController@mark');
-Route::get('tasks/{id}', 'App\Domain\Tasks\TaskController@show');
-Route::post('tasks', 'App\Domain\Tasks\TaskController@store');
-Route::put('tasks/{id}', 'App\Domain\Tasks\TaskController@update');
-Route::delete('tasks/{id}', 'App\Domain\Tasks\TaskController@delete');
+Route::get('tasks', 'App\Domain\Tasks\TaskController@getAll')->name('tasks.getAll');
+Route::get('tasks/mark/{id}', 'App\Domain\Tasks\TaskController@mark')->name('tasks.mark');
+Route::get('tasks/{id}', 'App\Domain\Tasks\TaskController@show')->name('tasks.show');
+Route::post('tasks', 'App\Domain\Tasks\TaskController@store')->name('tasks.store');
+Route::put('tasks/{id}', 'App\Domain\Tasks\TaskController@update')->name('tasks.update');
+Route::delete('tasks/{id}', 'App\Domain\Tasks\TaskController@delete')->name('tasks.delete');

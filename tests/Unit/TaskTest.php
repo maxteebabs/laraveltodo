@@ -11,8 +11,7 @@ class TaskTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
-    {
+    public function test_can_create_task() {
         $this->assertTrue(true);
     }
 }

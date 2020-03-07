@@ -23,6 +23,12 @@
     <div class="col-md-9">
         <div class="content-wrapper">
             <h2>My Task</h2><hr />
+            <ul class="pagination">
+                <li  v-show="current_page > 1"><a class="page-link" href="#" 
+                    @click.prevent="prev()">&laquo; Prev</a></li>
+                <li v-show="current_page < total_pages"><a class="page-link" href="#" 
+                    @click.prevent="next()">Next &raquo;</a></li>
+            </ul>
             <table class="table table-bordered table-striped table-condensed">
                 <tr>
                     <th>Title</th>

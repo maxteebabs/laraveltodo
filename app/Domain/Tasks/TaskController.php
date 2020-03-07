@@ -18,7 +18,7 @@ class TaskController extends Controller
         }else{
             $tasks = Task::orderBy('created_at', 'desc')->paginate(20);
         }
-        return $tasks;
+        return response()->json($tasks, 200);
     }
     public function show($id) {
         $task = Task::find($id);

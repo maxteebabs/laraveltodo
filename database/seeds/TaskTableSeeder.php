@@ -12,15 +12,8 @@ class TaskTableSeeder extends Seeder
      */
     public function run()
     {
-        Task::truncate();
+        // Task::truncate();
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 50; $i++) {
-            Task::create([
-                'title' => $faker->sentence,
-                'note' => $faker->paragraph,
-                'is_completed' => 0,
-                'tags' => 'My Day',
-            ]);
-        }
+        factory(Task::class, 50)->create();
     }
 }

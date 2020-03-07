@@ -13,7 +13,8 @@ window.addEventListener('load', () => {
         data:{
             tasks:[],
             per_page: 20,
-            current_page:1,
+            current_page: 1,
+            total_pages: 1,
             total:50, 
             current_tag: "My Day",
             item: { id: "", title: "", note: "", tags: "", is_completed: 0 },
@@ -24,14 +25,16 @@ window.addEventListener('load', () => {
         },
         methods:{
             getTasks: function() {
-                var url = `${base_url}/tasks/?current_tag=${this.current_tag}`;
+                var url = `${base_url}/tasks/?page=${this.current_page}&current_tag=${this.current_tag}`;
                 axios
                 .get(url)
                 .then(response => {
                     let result = response.data;
                     this.tasks = result.data;
                     this.per_page = result.per_page;
-                    this.current_page = result.current_page;
+                    this.total_pages = Math.ceil(this.total / this.per_page);
+
+                    // this.current_page = result.current_page;
                     this.total = result.total;  
                 }).catch(function(error) {
                     console.log(error);
@@ -138,6 +141,21 @@ window.addEventListener('load', () => {
                 this.item.note = task.note;
                 this.item.tags = task.tags;
                 this.item.is_completed = task.is_completed;
+            },
+            prev() {
+                this.current_page--;
+                if(this.current_page < 1) {
+                    this.current_page = 1;
+                }
+                this.getTasks();
+            },
+            next() {
+                this.current_page++;
+                if(this.current_page > this.total_pages) {
+                    this.current_page = this.total_pages;
+                }
+                this.getTasks();
+                console.log(this.current_page, this.total_pages)
             }
          }
     });
