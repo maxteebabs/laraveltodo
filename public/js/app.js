@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
         },
         methods:{
             getTasks: function() {
-                var url = `${base_url}/tasks/?current_tag=${this.current_tag}`;
+                var url = `${base_url}/tasks/?page=${this.page}&current_tag=${this.current_tag}`;
                 axios
                 .get(url)
                 .then(response => {
@@ -138,6 +138,17 @@ window.addEventListener('load', () => {
                 this.item.note = task.note;
                 this.item.tags = task.tags;
                 this.item.is_completed = task.is_completed;
+            },
+            changePage(page) {
+                let total_pages = Math.ceil(this.total / this.per_page);
+                if(page < 1) {
+                    this.current_page = 1;
+                }else if(page > total_pages) {
+                    this.current_page = total_pages;
+                }else{
+                    this.current_page = page;
+                }
+                this.getTasks();
             }
          }
     });

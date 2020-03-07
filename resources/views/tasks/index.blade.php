@@ -23,6 +23,12 @@
     <div class="col-md-9">
         <div class="content-wrapper">
             <h2>My Task</h2><hr />
+            <ul class="pagination">
+                <li><a class="page-link" href="#" 
+                    @click.prevent="changePage(--this.current_page)">&laquo; Prev</a></li>
+                <li><a class="page-link" href="#" 
+                    @click.prevent="changePage(++this.current_page)">Next &raquo;</a></li>
+            </ul>
             <table class="table table-bordered table-striped table-condensed">
                 <tr>
                     <th>Title</th>

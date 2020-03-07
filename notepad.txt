@@ -1,0 +1,7 @@
+docker-compose build && docker-compose up -d && docker-compose logs -f
+docker ps
+docker exec -it laravel-app bash -c "sudo -u devuser /bin/bash"
+docker exec -it mysql-db bash -c "mysql -u dbuser -psecret db"
+composer install
+php artisan key:generate
+php artisan migrate

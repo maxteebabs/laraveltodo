@@ -14,6 +14,6 @@ class TaskTableSeeder extends Seeder
     {
         // Task::truncate();
         $faker = \Faker\Factory::create();
-        factory(Task::class, 10)->create();
+        factory(Task::class, 50)->create();
     }
 }
